@@ -1,23 +1,23 @@
 import { DynamoDB } from 'aws-sdk';
 import { typeEmpResponse } from '@libs/interfaces';
 
-const dynamodb = new DynamoDB.DocumentClient();
+const db = new DynamoDB.DocumentClient();
 
-export const saveToDynamo: any = (newEmp: typeEmpResponse) => {
-    return dynamodb.put({
+export const saveToDB: any = (newEmp: typeEmpResponse) => {
+    return db.put({
         TableName: "TSEmployees",
         Item: newEmp
     }).promise();
 }
 
-export const fetchAllFromDynamo: any = () => {
-    return dynamodb.scan({
+export const fetchAllFromDB: any = () => {
+    return db.scan({
         TableName: "TSEmployees"
     }).promise();
 }
 
-export const fetchOneFromDynamo: any = (id: String) => {
-    return dynamodb.get({
+export const fetchOneFromDB: any = (id: String) => {
+    return db.get({
         TableName: "TSEmployees",
         Key: {
             empId: id,
@@ -26,8 +26,8 @@ export const fetchOneFromDynamo: any = (id: String) => {
     }).promise()
 }
 
-export const updateInDynamo: any = (id: String, completed: boolean) => {
-    return dynamodb.update({
+export const updateInDB: any = (id: String, completed: boolean) => {
+    return db.update({
         TableName: "TSEmployees",
         Key: {
             empId: id
@@ -40,8 +40,8 @@ export const updateInDynamo: any = (id: String, completed: boolean) => {
     }).promise();
 }
 
-export const deleteOneInDynamo: any = (id: String) => {
-    return dynamodb.delete({
+export const deleteOneInDB: any = (id: String) => {
+    return db.delete({
         TableName: "TSEmployees",
         Key: {
             empId: id

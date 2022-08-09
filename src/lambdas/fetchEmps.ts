@@ -1,10 +1,10 @@
 import { APIGatewayProxyHandler } from "aws-lambda";
-import { fetchAllFromDynamo } from "src/services/dynamodb";
+import { fetchAllFromDB } from "src/services/dynamodb";
 import { typeEmpResponse } from "@libs/interfaces";
 
 const fetchEmps: APIGatewayProxyHandler = async () => {
 
-    const res = await fetchAllFromDynamo();
+    const res = await fetchAllFromDB();
     const emps: typeEmpResponse[] = res.Items;
 
     return {

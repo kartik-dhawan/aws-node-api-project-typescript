@@ -1,10 +1,10 @@
 import { APIGatewayProxyHandler } from "aws-lambda";
-import { deleteOneInDynamo } from "src/services/dynamodb";
+import { deleteOneInDB } from "src/services/dynamodb";
 
 const deleteEmp: APIGatewayProxyHandler = async (event) => {
 
     const { id } = event.pathParameters;
-    await deleteOneInDynamo(id);
+    await deleteOneInDB(id);
 
 
     return {

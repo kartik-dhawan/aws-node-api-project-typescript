@@ -1,7 +1,7 @@
 import { APIGatewayProxyHandler } from 'aws-lambda'
 import { v4 } from 'uuid'
 import { typeInput, typeEmpResponse } from '@libs/interfaces';
-import { saveToDynamo } from 'src/services/dynamodb';
+import { saveToDB } from 'src/services/dynamodb';
 
 const addEmp: APIGatewayProxyHandler = async (event) => {
 
@@ -19,7 +19,7 @@ const addEmp: APIGatewayProxyHandler = async (event) => {
         completed: false
     }
 
-    await saveToDynamo(newEmp);
+    await saveToDB(newEmp);
 
     return {
         statusCode: 200,
